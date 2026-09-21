@@ -2,18 +2,26 @@
 
 一套基于阿里云百炼模型的 Agent 工程学习实验室，覆盖从手写 Agent Loop 到工具调用、MCP、LangGraph、记忆、Agentic RAG、多 Agent、评估、可观测性、部署和安全的完整路线。
 
-## 内容
+## 课程目录
 
-- Python 异步、Pydantic v2 与最小 Agent Loop
-- Function Calling：天气、汇率、待办、日志和搜索
-- 参数校验、调用超时、未知工具与循环防护
-- FastMCP 安全文件系统 Server
-- LangGraph 周末旅行规划工作流
-- 工作记忆、会话记忆与长期记忆
-- 百炼 Embedding 与 Agentic RAG
-- Supervisor 多 Agent 写作团队
-- 评估、Trace 与可靠性报告
-- FastAPI、SSE、Guardrails 与成本路由
+课程已按知识节点拆成 12 个可独立运行的 Notebook，直接放在项目根目录：
+
+| 课次 | Notebook | 主题 |
+| --- | --- | --- |
+| 00 | `00_环境安装与配置.ipynb` | Python、虚拟环境、Jupyter 与密钥安全 |
+| 01 | `01_Python异步与Pydantic.ipynb` | 异步、类型注解和输入校验 |
+| 02 | `02_最小Agent循环.ipynb` | 手写 Agent Loop 与循环防护 |
+| 03 | `03_Function_Calling工具.ipynb` | 天气、汇率、待办、日志和搜索工具 |
+| 04 | `04_MCP安全文件服务.ipynb` | FastMCP 与文件系统安全 |
+| 05 | `05_LangGraph工作流.ipynb` | 状态、节点、条件边与 checkpoint |
+| 06 | `06_三层记忆.ipynb` | 工作、会话与长期记忆 |
+| 07 | `07_Agentic_RAG.ipynb` | 向量检索与自主检索 Agent |
+| 08 | `08_多Agent协作.ipynb` | Supervisor 写作团队 |
+| 09 | `09_评估与可观测性.ipynb` | Eval、Trace 与可靠性报告 |
+| 10 | `10_API安全与部署.ipynb` | FastAPI、SSE、安全与成本路由 |
+| 11 | `11_作品集项目与验收.ipynb` | 项目化、测试、部署与毕业验收 |
+
+每课都包含学习目标、概念解释、逐步路线、独立运行所需的准备代码、常见问题、练习和验收清单。
 
 ## 快速开始
 
@@ -27,15 +35,26 @@ $env:DASHSCOPE_API_KEY="你的百炼 API Key"
 jupyter lab
 ```
 
-打开 `bailian_agent_engineering_lab.ipynb`，从上到下运行。默认模型为 `qwen-plus`，默认使用百炼北京地域 OpenAI 兼容入口。
+从 `00_环境安装与配置.ipynb` 开始，按编号学习。默认模型为 `qwen-plus`，默认使用百炼北京地域 OpenAI 兼容入口。Notebook 会通过 `python-dotenv` 自动读取项目根目录的 `.env`。
+
+第一次使用建议在项目根目录注册虚拟环境为 Jupyter 内核：
+
+```powershell
+python -m ipykernel install --user --name agent-engineering-lab --display-name "Agent Engineering Lab"
+```
+
+随后在每个 Notebook 右上角选择 `Agent Engineering Lab` 内核。
 
 可选配置：
 
-```powershell
-$env:BAILIAN_BASE_URL="https://dashscope.aliyuncs.com/compatible-mode/v1"
-$env:BAILIAN_MODEL="qwen-plus"
-$env:BAILIAN_EMBEDDING_MODEL="text-embedding-v4"
+```dotenv
+DASHSCOPE_API_KEY="你的百炼 API Key"
+BAILIAN_BASE_URL="https://dashscope.aliyuncs.com/compatible-mode/v1"
+BAILIAN_MODEL="qwen-plus"
+BAILIAN_EMBEDDING_MODEL="text-embedding-v4"
 ```
+
+可以复制 `.env.example` 为 `.env` 后填写真实值。`.env` 已被 Git 忽略，不会提交到 GitHub。
 
 ## 安全说明
 
@@ -46,5 +65,5 @@ $env:BAILIAN_EMBEDDING_MODEL="text-embedding-v4"
 
 ## 项目状态
 
-当前版本是单 Notebook 教学实现。建议学习完成后，把各章节拆分为独立 Python 包、测试与部署项目。
+当前版本提供分课 Notebook 与完整母版。Notebook 为教学用途；学习完成后，建议选一个主题进一步拆成独立 Python 包、测试与部署项目。
 
